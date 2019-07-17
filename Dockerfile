@@ -1,4 +1,4 @@
-FROM ubuntu:disco
+FROM debian:stretch-slim
 
 RUN mkdir /opt/tmserver
 
@@ -10,14 +10,18 @@ RUN unzip /opt/tmserver/TrackmaniaServer_2011-02-21.zip -d /opt/tmserver
 COPY custom_game_settings.txt /opt/tmserver/GameData/Tracks/MatchSettings/
 COPY RunTrackmaniaServer.sh /opt/tmserver/
 
-ARG SERVER_NAME='$w$F60DSI-$F90Ankama'
-ARG SERVER_DESC='Bienvenue sur le serveur docker Trackmania de la team DSI'
+ARG SERVER_NAME='Trackmania Server'
+ARG SERVER_DESC='This is a Trackmania Server'
+ARG SERVER_SA_PASSWORD='SuperAdmin'
+ARG SERVER_ADM_PASSWORD='Admin'
 ENV SERVER_NAME $SERVER_NAME
 ENV SERVER_DESC $SERVER_DESC
+ENV SERVER_SA_PASSWORD $SERVER_SA_PASSWORD
+ENV SERVER_ADM_PASSWORD $SERVER_ADM_PASSWORD
 
 EXPOSE 5000/tcp
 EXPOSE 2350/tcp
 EXPOSE 2350/udp
 EXPOSE 3450/tcp
 
-ENTRYPOINT ["/opt/tmserver/RunTrackmaniaServer.sh"]
+CMD ["/opt/tmserver/RunTrackmaniaServer.sh"]
