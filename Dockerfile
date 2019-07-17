@@ -15,10 +15,9 @@ ARG SERVER_DESC='Bienvenue sur le serveur docker Trackmania de la team DSI'
 ENV SERVER_NAME $SERVER_NAME
 ENV SERVER_DESC $SERVER_DESC
 
-ENTRYPOINT ["/opt/tmserver/RunTrackmaniaServer.sh"]
-CMD [""]
-
 EXPOSE 5000/tcp
 EXPOSE 2350/tcp
 EXPOSE 2350/udp
 EXPOSE 3450/tcp
+
+ENTRYPOINT ["/opt/tmserver/RunTrackmaniaServer.sh"]
