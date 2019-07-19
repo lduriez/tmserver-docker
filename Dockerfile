@@ -2,13 +2,17 @@ FROM debian:stretch-slim
 
 RUN mkdir /opt/tmserver
 
-WORKDIR /opt/tmserver
-
 COPY TrackmaniaServer_2011-02-21.zip /opt/tmserver
-RUN apt-get update && apt-get install -y unzip
-RUN unzip /opt/tmserver/TrackmaniaServer_2011-02-21.zip -d /opt/tmserver
 COPY custom_game_settings.txt /opt/tmserver/GameData/Tracks/MatchSettings/
-COPY RunTrackmaniaServer.sh /opt/tmserver/
+COPY RunTrackmaniaServer.sh /
+
+RUN apt-get update && apt-get install -y unzip
+RUN groupadd trackmania
+RUN useradd -M -g trackmania trackmania
+RUN unzip /opt/tmserver/TrackmaniaServer_2011-02-21.zip -d /opt/tmserver
+RUN chown -R trackmania:trackmania /opt/tmserver
+RUN chown trackmania:trackmania /RunTrackmaniaServer.sh
+
 
 ARG SERVER_NAME='Trackmania Server'
 ARG SERVER_DESC='This is a Trackmania Server'
@@ -24,4 +28,6 @@ EXPOSE 2350/tcp
 EXPOSE 2350/udp
 EXPOSE 3450/tcp
 
-CMD ["/opt/tmserver/RunTrackmaniaServer.sh"]
+USER trackmania
+WORKDIR /opt/tmserver
+CMD ["/RunTrackmaniaServer.sh"]
