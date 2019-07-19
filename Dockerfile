@@ -12,6 +12,7 @@ RUN useradd -M -g trackmania trackmania
 RUN unzip /opt/tmserver/TrackmaniaServer_2011-02-21.zip -d /opt/tmserver
 RUN chown -R trackmania:trackmania /opt/tmserver
 RUN chown trackmania:trackmania /RunTrackmaniaServer.sh
+RUN chmod -R ug+w /opt/tmserver
 
 
 ARG SERVER_NAME='Trackmania Server'
