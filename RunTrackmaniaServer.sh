@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Starting apache server"
+service apache2 start
+
 echo "Setting ENV/ARG variables"
 sed -i "s/<password>SuperAdmin/<password>${SERVER_SA_PASSWORD}/" /opt/tmserver/GameData/Config/dedicated_cfg.txt
 sed -i "s/<password>Admin/<password>${SERVER_ADM_PASSWORD}/" /opt/tmserver/GameData/Config/dedicated_cfg.txt
