@@ -16,6 +16,8 @@ On a docker environment simply do the following
 docker run -d -p 2350:2350 -p 3450:3450 -p 80:80 --name tm-server lduriez/tmserver
 ```
 
+You can add environment variable to modify default values : [#Environment variables](#environment-variables)
+
 ### Configure Server Management Webui
 
 Visit `http:<host-server-of-the-conntainer>` and start configuration by setting the password of your choice.
